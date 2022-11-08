@@ -1,0 +1,40 @@
+USER OBJECT:
+{
+    "id": "STRING",
+    "name": {
+        "firstName": "STRING",
+        "lastName": "STRING"
+    },
+    "dateBirth": "DATE",
+    "email": "STRING",
+    "isAdmin": "BOOLEAN",
+    "status": "STRING" // [active, unverified, banned]
+}
+
+FRIENDS BY USER OBJECT:
+{
+    "userID": "STRING",  // USER ID
+    "friends": [
+        "STRING",  // friend id
+        ...
+        "STRING"
+    ]
+}
+
+NEWS BY USER OBJECT:
+{
+    "userID": "STRING",
+    "news": [
+        "STRING",  // news id
+        ...
+        "STRING"
+    ]
+}
+
+NEWS OBJECT:
+{
+    "newsID": "STRING",
+    "title": "STRING",
+    "content": "TEXT"
+    // "createdAt": "DATE"
+}
