@@ -12,6 +12,9 @@
     "serverRun": "nodemon src/bin/www.js",
     "webapp:dev": "concurrently 'npm:dev' nodemon dist/main.js"
   },
+  "browserslist": [
+    "last 3 versions"
+  ],
   "dependencies": {
     "aos": "^2.3.4",
     "body-parser": "^1.20.1",
@@ -22,6 +25,7 @@
     "express": "~4.16.1",
     "express-ejs-layouts": "^2.5.1",
     "http-errors": "~1.6.3",
+    "https": "^1.0.0",
     "jquery": "^3.6.1",
     "less-middleware": "~2.2.1",
     "method-override": "^3.0.0",
@@ -46,11 +50,20 @@
     "ejs-webpack-loader": "^2.2.2",
     "file-loader": "^6.2.0",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssimport": "^7.0.0",
+    "gulp-csso": "^4.0.1",
     "gulp-ejs": "^5.1.0",
     "gulp-htmlmin": "^5.0.1",
+    "gulp-less": "^5.0.0",
+    "gulp-rename": "^2.0.0",
     "gulp-size": "^4.0.1",
+    "gulp-uglify": "^3.0.2",
     "html-webpack-plugin": "^5.5.0",
     "less-loader": "^11.1.0",
+    "less-plugin-autoprefix": "^2.0.0",
     "mini-css-extract-plugin": "^2.6.1",
     "sass-loader": "^13.1.0",
     "style-loader": "^3.3.1",

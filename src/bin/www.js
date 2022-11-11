@@ -5,8 +5,8 @@
  */
 const app = require('../app');
 const debug = require('debug')('lab3-network:server');
-const http = require('http');
-
+const https = require('https');
+const fs = require('fs')
 /**
  * Get port from environment and store in Express.
  */
@@ -16,7 +16,11 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-const server = http.createServer(app);
+const options = {
+  key: fs.readFileSync("C:\\\\cert\\\\privateKey.key", "utf8"),
+  cert: fs.readFileSync("C:\\\\cert\\\\certificate.crt", "utf8")
+};
+const server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.

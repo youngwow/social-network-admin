@@ -1,8 +1,25 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@color-text: black;
+@font-body: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 
+body {
+  padding-top: 10em;
+  padding-bottom: 30em;
+  font: @font-body;
+  .css-gradient(#cfd9df, #e2ebf0);
+  color: @color-text;
+}
 a {
   color: #00B7FF;
+}
+.css-gradient(@from: #20416A, @to: #3D69A5) {
+  background-color: @to;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@from),  to(@to));
+  background-image: -webkit-linear-gradient(top, @from, @to);
+  background-image: -moz-linear-gradient(top, @from, @to);
+  background-image: -o-linear-gradient(top, @from, @to);
+  background-image: -ms-linear-gradient(top, @from, @to);
+  background-image: linear-gradient(top, @from, @to);
+}
+.css-gradient(darken,@amount: 10%, @from: #20416A, @to: #3D69A5){
+  .css-gradient(darken(@from,@amount),darken(@to,@amount));
 }

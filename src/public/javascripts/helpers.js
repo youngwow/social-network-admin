@@ -11,15 +11,15 @@ async function sendRequest(method, url, body = null) {
         options.body = JSON.stringify(body);
     }
     // TODO: сократить код, сделать рефакторинг
-    if (url === 'http://localhost:3000/admin/getFriends'
-        || url === 'http://localhost:3000/admin/getUsers'){
+    if (url === 'https://localhost:3000/admin/getFriends'
+        || url === 'https://localhost:3000/admin/getUsers'){
 
         await fetch(url, options).then(convertToJSON).then(res => {
             renderUsers(res, url)
         }).catch(err => {
             console.error(err)
         });
-    } else if (url === 'http://localhost:3000/admin/setUsers'){
+    } else if (url === 'https://localhost:3000/admin/setUsers'){
         await fetch(url, options).then(convertToJSON).then(res => {
             let {users} = res;
             for (let [index, user] of users.entries()) {
@@ -28,8 +28,8 @@ async function sendRequest(method, url, body = null) {
         }).catch(err => {
             console.error(err)
         });
-    } else if (url === 'http://localhost:3000/admin/getNewsFriends'){
-        await fetch('http://localhost:3000/admin/getFriends', options)
+    } else if (url === 'https://localhost:3000/admin/getNewsFriends'){
+        await fetch('https://localhost:3000/admin/getFriends', options)
             .then(convertToJSON)
             .then(res => {
                 return renderUsers(res, url);
@@ -115,15 +115,15 @@ async function renderUser(user, index, url) {
         `<form class="form" method="get" action="/admin/friends/${user.id}"><button class="btn btn-primary" type="submit">Click</button></form>`,
         `<form class="form" method="get" action="/admin/newsFriends/${user.id}"><button class="btn btn-primary" type="submit">Click</button></form>`,
     ];
-    if (url !== 'http://localhost:3000/admin/getUsers'){  // TODO: duplicates
-        let deleteCount = url === 'http://localhost:3000/admin/getNewsFriends' ? 4 : 2;
+    if (url !== 'https://localhost:3000/admin/getUsers'){  // TODO: duplicates
+        let deleteCount = url === 'https://localhost:3000/admin/getNewsFriends' ? 4 : 2;
         htmlTags.splice(4, deleteCount);
         columns.splice(4, deleteCount);
-        if (url === 'http://localhost:3000/admin/getNewsFriends'){
+        if (url === 'https://localhost:3000/admin/getNewsFriends'){
             columns.push("Новости пользователя");
         }
     }
-    if (url === 'http://localhost:3000/admin/getNewsFriends'){
+    if (url === 'https://localhost:3000/admin/getNewsFriends'){
         let htmlTag = `<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${index}">
                                 Посмотреть новости пользователя
                             </button>`;
@@ -136,9 +136,9 @@ async function renderUser(user, index, url) {
         $(`#table-row${index} > #table-data${i}`).append(html);
     }
     $(`#table-row${index} td:first-child`).addClass("pl-4");
-    if (url === 'http://localhost:3000/admin/getUsers'){
+    if (url === 'https://localhost:3000/admin/getUsers'){
         setSelectedValues(user, index);
-    } else if (url === 'http://localhost:3000/admin/getNewsFriends'){
+    } else if (url === 'https://localhost:3000/admin/getNewsFriends'){
         // TODO: fix borders
         $(`#table-row${index} td:last-child`).append(`<div class="modal fade" id="modal${index}"></div>`);
         $(`#modal${index}`).append(`<div class="modal-dialog" id="modal-dialog${index}"></div>`);
@@ -170,11 +170,11 @@ function createTableHead(url, options = null) {
         lastName = options.lastName;
     }
     let cardTitle;
-    if (url === 'http://localhost:3000/admin/getUsers'){
+    if (url === 'https://localhost:3000/admin/getUsers'){
         cardTitle = "Список пользователей";
-    } else if (url === 'http://localhost:3000/admin/getFriends'){
+    } else if (url === 'https://localhost:3000/admin/getFriends'){
         cardTitle = "Список друзей пользователя";
-    } else if (url === 'http://localhost:3000/admin/getNewsFriends'){
+    } else if (url === 'https://localhost:3000/admin/getNewsFriends'){
         cardTitle = "Список новостей друзей пользователя";
     }
 
@@ -186,7 +186,7 @@ function createTableHead(url, options = null) {
     $('#cardTop').append("<div id='card-body' class=\"card-body\"></div>")
         .append("<div id='table-div' class=\"table-responsive\">");
     $('#card-body').append(`<h5 class=\"card-title text-uppercase mb-0\">${cardTitle}</h5>`);
-    if (url !== 'http://localhost:3000/admin/getUsers'){
+    if (url !== 'https://localhost:3000/admin/getUsers'){
         $('#card-body').append(`<h6 class="card-title text-uppercase mb-0">Имя: ${firstName}</h6>`)
                         .append(`<h6 class="card-title text-uppercase mb-0">Фамилия: ${lastName}</h6>`);
     }
@@ -197,11 +197,11 @@ function createTableHead(url, options = null) {
     let columns = ["#", "ФИО", "Email", "Дата рождения",
         "Роль", "Статус", "Список друзей пользователя",
         "Список новостей друзей пользователя"];
-    if (url !== 'http://localhost:3000/admin/getUsers'){ // TODO: duplicates
-        let deleteCount = url === 'http://localhost:3000/admin/getNewsFriends' ? 4 : 2;
+    if (url !== 'https://localhost:3000/admin/getUsers'){ // TODO: duplicates
+        let deleteCount = url === 'https://localhost:3000/admin/getNewsFriends' ? 4 : 2;
         columns.splice(4, deleteCount);
     }
-    if (url === 'http://localhost:3000/admin/getNewsFriends'){
+    if (url === 'https://localhost:3000/admin/getNewsFriends'){
         columns.push("Новости пользователя");
     }
     for (let i = 0; i < columns.length; i++) {
@@ -218,7 +218,7 @@ async function handleChangeSelect () {
         role: role,
         index: index
     };
-    await sendRequest("POST", 'http://localhost:3000/admin/setUsers', body);
+    await sendRequest("POST", 'https://localhost:3000/admin/setUsers', body);
 }
 
 function getScriptParams() {

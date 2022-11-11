@@ -8,6 +8,6 @@ $(document).ready(async () => {
       userID: userID
     };
 
-    await sendRequest('POST', 'http://localhost:3000/admin/getFriends', body);
+    await sendRequest('POST', 'https://localhost:3000/admin/getFriends', body);
 
 })
