@@ -14,7 +14,6 @@ const uglify = require('gulp-uglify');
 // Плагины
 const htmlmin = require('gulp-htmlmin');
 const size = require('gulp-size')
-const ejs = require('gulp-ejs');
 
 const pathSrc = "./src";
 const pathDest = "./gulp_dist";
@@ -30,19 +29,7 @@ const html = () => {
         .pipe(dest(pathDest));
 }
 
-const gulpEjs = () => {
-  return src(path.join(pathSrc,"/views/**/**/*.ejs"))
-      .pipe(size({ title: "До сжатия "}))
-      .pipe(ejs({
-          body: '<%- body %>',
-          error: {
-              message: undefined
-          },
-          userID: '<%= userID %>'
-      }))
-      .pipe(size({ title: "После сжатия "}))
-      .pipe(dest(pathDest));
-}
+
 
 const css = () => {
   return src(path.join(pathSrc, "/public/stylesheets/**/*.css"))
@@ -88,7 +75,6 @@ const watcher = () => {
 
 // Задачи
 exports.html = html;
-exports.gulpEjs = gulpEjs;
 exports.watcher = watcher;
 exports.css = css;
 exports.less = less;

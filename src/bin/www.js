@@ -22,6 +22,37 @@ const options = {
 };
 const server = https.createServer(options, app);
 
+const io = require('socket.io')(server, {
+  cors: {
+    origins: ["*"],
+    handlePreflightRequest: (req, res) => {
+      res.writeHead(200, {
+        "Access-Control-Allow-Credintals": "*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,POST,PUT,GET,HEAD,PATCH,DELETE",
+      });
+      res.end();
+    }
+  }});
+
+global.subscribers = [];
+
+io.sockets.on("connection", (socket) => {
+  console.log("success");
+
+  socket.on("disconnect", () => {
+    console.log("dis");
+  });
+
+  socket.on("news-subscribe", (args)=> {
+    if(args.token) {
+      console.log("sub");
+      subscribers[args.token] = {token: args.token, socket};
+      console.log(subscribers);
+    }
+  });
+});
+
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -89,3 +120,5 @@ function onListening() {
       : 'port ' + address.port;
   debug('Listening on ' + bind);
 }
+
+// module.exports.subscribers = subscribers;

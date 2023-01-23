@@ -103,7 +103,7 @@ async function renderUser(user, index, url) {
         `<h5 class=\"font-medium mb-0\">${user.name?.firstName} ${user.name?.lastName}</h5>`,
         `<span class=\"text-muted\">${user.email}</span>`,
         `<span class=\"text-muted\">${(new Date(user.dateBirth)).toLocaleDateString("ru")}</span>`,
-        `<select class=\"form-control category-select admin-user\" id=\"Select1_${index}\">" +
+        `<select class=\"form-control category-select admin-user \" id=\"Select1_${index}\">" +
             <option value="admin ${index}">Админ</option> +
             <option value="user ${index}">Пользователь</option> +
             "</select>`,
@@ -112,8 +112,8 @@ async function renderUser(user, index, url) {
                 <option value="active ${index}">Активный</option> +
                 <option value="banned ${index}">Заблокированный</option> +
             </select>`,
-        `<form class="form" method="get" action="/admin/friends/${user.id}"><button class="btn btn-primary" type="submit">Click</button></form>`,
-        `<form class="form" method="get" action="/admin/newsFriends/${user.id}"><button class="btn btn-primary" type="submit">Click</button></form>`,
+        `<form class="form text-center" method="get" action="/admin/friends/${user.id}"><button class="btn btn-primary" type="submit">Click</button></form>`,
+        `<form class="form text-center" method="get" action="/admin/newsFriends/${user.id}"><button class="btn btn-primary" type="submit">Click</button></form>`,
     ];
     if (url !== 'https://localhost:3000/admin/getUsers'){  // TODO: duplicates
         let deleteCount = url === 'https://localhost:3000/admin/getNewsFriends' ? 4 : 2;
